@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>daily-ordles</title>
+  
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+    
+    * {
+      font-family: 'Oleo Script Swash Caps', cursive;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .games {
+      margin: 20px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .name {
+      color: black;
+      font-size: 28px;
+    }
+    
+    iframe, .spacer {
+      margin-bottom: 20px;
+    }
+    
+  </style>
+
+</head>
+<body>
+
+  <div class="games"></div>
+
+  <script>
+
+    const games = [
+      {
+        name: 'Worldle',
+        link: 'https://worldle.teuteuf.fr/',
+        isEmbeddable: true,
+      },
+      {
+        name: 'Emovi',
+        link: 'https://emovi.teuteuf.fr/',
+        isEmbeddable: true,
+      },
+      {
+        name: 'Heardle',
+        link: 'https://www.spotify.com/heardle/',
+        isEmbeddable: true,
+      },
+      {
+        name: 'Wordle',
+        link: 'https://www.nytimes.com/games/wordle/index.html',
+        isEmbeddable: false,
+      },
+      {
+        name: 'Waffle',
+        link: 'https://wafflegame.net/',
+        isEmbeddable: false,
+      },
+      {
+        name: 'Spelling Bee',
+        link: 'https://www.nytimes.com/puzzles/spelling-bee',
+        isEmbeddable: false,
+      },
+      {
+        name: 'Mini Crossword',
+        link: 'https://www.nytimes.com/crosswords/game/mini',
+        isEmbeddable: false,
+      },
+    ];
+
+    const gamesContainer = document.querySelector('.games');
+    
+    for (const game of games) {
+      const { name, link, isEmbeddable } = game;
+      const gameContainer = document.createElement('div');
+      gameContainer.innerHTML = `
+        <div class="game">
+
+          <a target="_" href="${link}">
+            <div class="name">
+              ${name}  
+            </div>
+          </a>
+
+          ${isEmbeddable
+            ? `<iframe 
+                src="${link}"
+                loading="lazy"
+                width="100%"
+                height="700px"
+              ></iframe>`
+            : '<div class="spacer"></div> '
+          }
+          
+        </div>
+      `;
+      gamesContainer.appendChild(gameContainer);
+    }
+
+
+  </script>
+</body>
+</html>
